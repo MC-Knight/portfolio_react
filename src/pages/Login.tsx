@@ -1,5 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 //slice
 import { loginUser } from "../slices/user";
@@ -20,17 +22,18 @@ function Login() {
 
   const [loginUserMutation, { isLoading }] = useLoginUserMutation();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<LoginData> = async (userData: LoginData) => {
-    const { data, error } = await loginUserMutation(userData);
-
-    if (error) {
-      toast.error(error.data.error);
-      return;
-    }
-
-    if (data) {
-      loginUser(data);
-      toast.success(data.message);
+    try {
+      const response = await loginUserMutation(userData).unwrap();
+      dispatch(loginUser(response));
+      toast.success(response.message);
+      navigate("/dashboard");
+    } catch (error) {
+      const err = error as Record<string, Record<string, string>>;
+      toast.error(err.data.error);
     }
   };
   return (
