@@ -37,7 +37,7 @@ function BlogCard(blog: BlogCardProps): JSX.Element {
           <button>
             <MessageCircle /> {blog.comments?.length}
           </button>
-          <button id="open-edit-blog-model-6618107cf6a04045215ef389">
+          <button onClick={() => onOpen("editBlog", { blog })}>
             <FilePenLine />
             Edit
           </button>

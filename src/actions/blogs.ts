@@ -35,6 +35,13 @@ export const blogApi = createApi({
         method: "DELETE",
       }),
     }),
+    editBlog: builder.mutation({
+      query: ({data, id}) => ({
+        url: `/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -42,4 +49,5 @@ export const {
   useAddBlogMutation,
   useGetBlogsMutation,
   useDeleteBlogMutation,
+  useEditBlogMutation,
 } = blogApi;
