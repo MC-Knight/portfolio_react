@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AddBlogModel } from "../components/modals/AddBlogModel";
+import DeleteBlogModel from "../components/modals/DeleteBlogModel";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -15,6 +16,7 @@ export const ModalProvider = () => {
   return (
     <>
       <AddBlogModel />
+      <DeleteBlogModel />
     </>
   );
 };

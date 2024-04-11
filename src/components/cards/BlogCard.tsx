@@ -1,4 +1,5 @@
 import { Eye, FilePenLine, Heart, MessageCircle, Trash } from "lucide-react";
+import { useModal } from "../../hooks/use-modal-store";
 
 interface Comment {
   _id: string;
@@ -19,6 +20,7 @@ export interface BlogCardProps {
 }
 
 function BlogCard(blog: BlogCardProps): JSX.Element {
+  const { onOpen } = useModal();
   return (
     <div className="recent-blog-right-card">
       <img src={blog.poster} alt={blog.title} />
@@ -39,7 +41,7 @@ function BlogCard(blog: BlogCardProps): JSX.Element {
             <FilePenLine />
             Edit
           </button>
-          <button id="open-delete-blog-model-6618107cf6a04045215ef389">
+          <button onClick={() => onOpen("deleteBlog", { blog })}>
             <Trash />
             Delete
           </button>

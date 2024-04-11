@@ -24,7 +24,7 @@ export const userApi = createApi({
       }),
     }),
     logoutUser: builder.mutation({
-      query: (data: Record<string, string>) => ({
+      query: (data) => ({
         url: "/logout",
         method: "POST",
         body: data,
@@ -33,4 +33,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useLoginUserMutation } = userApi;
+export const { useLoginUserMutation, useLogoutUserMutation } = userApi;

@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
 import { useModal } from "../../hooks/use-modal-store";
+import { useBlogsStore } from "../../hooks/use-add-blog";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 //mutation
@@ -14,6 +15,7 @@ type Blog = {
 
 export const AddBlogModel = () => {
   const { isOpen, onClose, type } = useModal();
+  const { setAddedBlog } = useBlogsStore();
 
   const isModalOpen = isOpen && type === "createBlog";
 
@@ -40,6 +42,9 @@ export const AddBlogModel = () => {
     try {
       const response = await addBlogMutation(formData).unwrap();
       toast.success(response.message);
+      setTimeout(() => {
+        setAddedBlog("added");
+      }, 1000);
       handleClose();
     } catch (error) {
       const err = error as Record<string, Record<string, string>>;
