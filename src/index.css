@@ -398,6 +398,11 @@ body {
   font-size: 13px;
 }
 
+.recent-blog-likes svg {
+  color: var(--main-color);
+  width: 15px;
+  height: 15px;
+}
 .recent-blog-buttons button {
   display: flex;
   align-items: flex-start;
@@ -411,7 +416,14 @@ body {
   color: var(--main-color);
 }
 
-.recent-blog-buttons button:last-child {
+.recent-blog-buttons button svg {
+  color: var(--main-color);
+  width: 15px;
+  height: 15px;
+}
+
+.recent-blog-buttons button:last-child,
+.recent-blog-buttons button:last-child svg {
   color: var(--orange-color);
 }
 

@@ -1,6 +1,10 @@
 import { X } from "lucide-react";
+import toast from "react-hot-toast";
 import { useModal } from "../../hooks/use-modal-store";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+//mutation
+import { useAddBlogMutation } from "../../actions/blogs";
 
 type Blog = {
   title: string;
@@ -25,12 +29,22 @@ export const AddBlogModel = () => {
     formState: { errors },
   } = useForm<Blog>();
 
-  const onSubmit: SubmitHandler<Blog> = (data: Blog) => {
+  const [addBlogMutation, { isLoading }] = useAddBlogMutation();
+
+  const onSubmit: SubmitHandler<Blog> = async (data: Blog) => {
     const formData = new FormData();
     formData.append("title", data.title);
-    formData.append("poster", data.poster[0]);
+    formData.append("image", data.poster[0]);
     formData.append("content", data.content);
-    console.log(formData.get("title"));
+
+    try {
+      const response = await addBlogMutation(formData).unwrap();
+      toast.success(response.message);
+      handleClose();
+    } catch (error) {
+      const err = error as Record<string, Record<string, string>>;
+      toast.error(err.data.error);
+    }
   };
   return (
     <>
@@ -81,7 +95,7 @@ export const AddBlogModel = () => {
             </div>
 
             <button type="submit">
-              <p>save blog</p>
+              {isLoading ? <div className="loader"></div> : <p>save blog</p>}
             </button>
           </form>
         </div>
