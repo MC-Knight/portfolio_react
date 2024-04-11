@@ -13,6 +13,7 @@ import SideBar from "../components/cards/SideBar";
 
 function Dashboard() {
   const { onOpen } = useModal();
+
   useEffect(() => {
     document.title = "Dashboard";
   }, []);

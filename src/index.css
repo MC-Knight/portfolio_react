@@ -458,7 +458,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
   width: 100%;
   height: 100vh;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
@@ -474,10 +474,10 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 5px 50px;
+  padding: 50px;
   overflow-x: hidden;
   overflow-y: auto;
-  gap: 20px;
+  gap: 10px;
 }
 
 .close-modal {
@@ -501,6 +501,7 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
+  margin-top: 5px;
 }
 .input-div-container p {
   color: var(--main-color);
@@ -513,7 +514,7 @@ body {
   border-radius: 5px;
   background: #ffffff;
   border: 1.5px solid rgba(51, 56, 60, 0.3);
-  padding: 5px 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -524,14 +525,19 @@ body {
   height: 100%;
   outline: none;
   border: none;
-  padding-left: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
 .input-div input[type="file"] {
-  margin-top: 15px;
+  margin-top: 5px;
+  color: rgba(51, 56, 60, 0.3);
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.input-div input[placeholder] {
   color: rgba(51, 56, 60, 0.3);
   font-weight: 400;
   font-size: 15px;
@@ -543,7 +549,7 @@ body {
   border-radius: 5px;
   background: #ffffff;
   border: 1.5px solid rgba(51, 56, 60, 0.3);
-  padding: 5px 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -558,7 +564,6 @@ body {
   border: none;
   resize: none;
   color: var(--main-color);
-  padding: 10px;
 }
 
 .textarea-div textarea[placeholder] {
@@ -573,6 +578,12 @@ body {
   font-size: 15px;
 }
 
+.error {
+  color: var(--orange-color);
+  font-size: 13px;
+  font-weight: 400;
+}
+
 .modal form button {
   width: 100%;
   height: 50px;
@@ -584,6 +595,11 @@ body {
   background: var(--main-color);
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal form button p {
+  padding: 10px;
 }
 
 .delete-modal {
@@ -725,7 +741,7 @@ body {
   background: var(--white-color);
 }
 
-@media screen and (max-width: 856px) {
+@media screen and (max-width: 950px) {
   .small-screen {
     width: 100%;
     display: flex;
