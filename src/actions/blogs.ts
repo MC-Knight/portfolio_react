@@ -2,10 +2,10 @@ import { backend_url } from "../utils/services";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "../store/store";
 
-export const userApi = createApi({
-  reducerPath: "userApi",
+export const blogApi = createApi({
+  reducerPath: "blogApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: backend_url + "/users",
+    baseUrl: backend_url + "/blogs",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.authToken;
       if (token) {
@@ -16,21 +16,30 @@ export const userApi = createApi({
   }),
 
   endpoints: (builder) => ({
-    loginUser: builder.mutation({
+    addBlog: builder.mutation({
       query: (data) => ({
-        url: "/login",
+        url: "",
         method: "POST",
         body: data,
       }),
     }),
-    logoutUser: builder.mutation({
-      query: (data) => ({
-        url: "/logout",
-        method: "POST",
-        body: data,
+    getBlogs: builder.mutation({
+      query: () => ({
+        url: "",
+        method: "GET",
+      }),
+    }),
+    deleteBlog: builder.mutation({
+      query: (id) => ({
+        url: `/${id}`,
+        method: "DELETE",
       }),
     }),
   }),
 });
 
-export const { useLoginUserMutation, useLogoutUserMutation } = userApi;
+export const {
+  useAddBlogMutation,
+  useGetBlogsMutation,
+  useDeleteBlogMutation,
+} = blogApi;
